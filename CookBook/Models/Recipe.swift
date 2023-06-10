@@ -25,6 +25,10 @@ struct Recipe : Identifiable {
             ingredients: [],
             directions: [])
     }
+    
+    var isValid : Bool {
+        !mainInformation.isValid && !ingredients.isEmpty && !directions.isEmpty
+    }
 }
 
 extension Recipe {
@@ -360,6 +364,10 @@ struct MainInformation {
     var description : String
     var author : String
     var category : Category
+    
+    var isValid : Bool {
+        !name.isEmpty && !description.isEmpty && !author.isEmpty && !author.isEmpty
+    }
 }
 
 struct Ingredient {
@@ -376,6 +384,16 @@ struct Ingredient {
         default:
             return quantity == 1 ? "1 \(unit.singularName) \(name)" : "\(formattedQuantity) \(unit.rawValue) \(name)"
         }
+    }
+    
+    init(name: String, quantity:Double, unit: Unit) {
+      self.name = name
+      self.quantity = quantity
+      self.unit = unit
+    }
+   
+    init() {
+      self.init(name: "", quantity: 1.0, unit: .none)
     }
 }
 

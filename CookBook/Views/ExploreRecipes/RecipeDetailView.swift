@@ -10,9 +10,6 @@ import SwiftUI
 struct RecipeDetailView: View {
     let recipe : Recipe
     
-    private let listBackgroundColor = AppColor.background
-    private let listTextColor = AppColor.foreground
-    
     var body: some View {
         VStack {
             HStack {
@@ -33,7 +30,7 @@ struct RecipeDetailView: View {
                         let ingredient = recipe.ingredients[index]
                         Text(ingredient.description)
                     }
-                }.listRowBackground(listBackgroundColor)
+                }.listRowBackground(AppColor.background)
                 Section(header: Text("Todo List").foregroundColor(.blue))
                     {
                         ForEach(recipe.directions.indices, id: \.self) {index in
@@ -44,7 +41,7 @@ struct RecipeDetailView: View {
                                 Text("\(description)")
                             }
                         }
-                    }.listRowBackground(listBackgroundColor)
+                    }.listRowBackground(AppColor.background)
             }.listStyle(PlainListStyle())
         }
         .navigationTitle(recipe.mainInformation.name)
