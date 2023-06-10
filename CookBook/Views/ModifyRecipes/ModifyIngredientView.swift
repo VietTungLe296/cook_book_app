@@ -7,23 +7,28 @@
 
 import SwiftUI
 
-struct ModifyIngredientView: View {
+struct ModifyIngredientView: ModifyComponentView {
     @Binding var ingredient : Ingredient
-    let createAction : ((Ingredient) -> Void)
+    let createAction : (Ingredient) -> Void
     
     @Environment(\.dismiss) var dismiss
+    
+    init(component: Binding<Ingredient>, createAction: @escaping (Ingredient) -> Void) {
+        self._ingredient = component
+        self.createAction = createAction
+    }
     
     var body: some View {
             Form {
                 TextField("Ingredient Name",text: $ingredient.name)
                     .autocorrectionDisabled(true)
-                
+                    
                 HStack {
                     Text("Quantity:")
                     TextField("Quantity",
                             value: ($ingredient.quantity),
                             formatter: NumberFormatter.decimal)
-                    .keyboardType(.decimalPad)
+                    .keyboardType(.numberPad)
                 }
 
                 Picker(selection : $ingredient.unit, label:
@@ -64,7 +69,7 @@ struct ModifyIngredientView_Previews: PreviewProvider {
     
     static var previews: some View {
         NavigationView {
-           ModifyIngredientView(ingredient: $recipe.ingredients[0]) { ingredient in
+           ModifyIngredientView(component: $recipe.ingredients[0]) { ingredient in
                 print(ingredient)
             }.navigationTitle("Add Ingredient")
         }

@@ -13,14 +13,11 @@ struct ModifyMainInfoView: View {
     var body: some View {
         Form {
             TextField("Recipe Name", text: $mainInformation.name)
-                .listRowBackground(AppColor.background)
             
             TextField("Author", text: $mainInformation.author)
-                .listRowBackground(AppColor.background)
             
             Section(header: Text("Description")) {
                 TextEditor(text: $mainInformation.description)
-                .listRowBackground(AppColor.background)
             }
             
             Picker(selection: $mainInformation.category,
@@ -32,7 +29,6 @@ struct ModifyMainInfoView: View {
                     Text(category.rawValue)
                 }
             }
-            .listRowBackground(AppColor.background)
             .pickerStyle(MenuPickerStyle())
         }
         .foregroundColor(AppColor.foreground)

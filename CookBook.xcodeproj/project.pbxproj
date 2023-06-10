@@ -16,8 +16,9 @@
 		6C413F6B2A2836830055D2E7 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C413F6A2A2836830055D2E7 /* Recipe.swift */; };
 		6C46E3962A301738003EBA6C /* ModifyMainInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C46E3952A301738003EBA6C /* ModifyMainInfoView.swift */; };
 		6C46E3982A301FD7003EBA6C /* ModifyIngredientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C46E3972A301FD7003EBA6C /* ModifyIngredientView.swift */; };
-		6C46E39A2A3032DD003EBA6C /* ModifyIngredientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C46E3992A3032DD003EBA6C /* ModifyIngredientsView.swift */; };
+		6C46E39A2A3032DD003EBA6C /* ModifyComponentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C46E3992A3032DD003EBA6C /* ModifyComponentsView.swift */; };
 		6C688F0B2A2882BF000EC7D0 /* RecipeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C688F0A2A2882BF000EC7D0 /* RecipeData.swift */; };
+		6CB4E7992A340DC200503355 /* ModifyDirectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB4E7982A340DC200503355 /* ModifyDirectionView.swift */; };
 		6CD029A82A2E160400689EDF /* RecipeCategoryGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD029A72A2E160400689EDF /* RecipeCategoryGridView.swift */; };
 		6CD5D52B2A2EDE7F0000439E /* ModifyRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD5D52A2A2EDE7F0000439E /* ModifyRecipeView.swift */; };
 /* End PBXBuildFile section */
@@ -33,8 +34,9 @@
 		6C413F6A2A2836830055D2E7 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		6C46E3952A301738003EBA6C /* ModifyMainInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyMainInfoView.swift; sourceTree = "<group>"; };
 		6C46E3972A301FD7003EBA6C /* ModifyIngredientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyIngredientView.swift; sourceTree = "<group>"; };
-		6C46E3992A3032DD003EBA6C /* ModifyIngredientsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyIngredientsView.swift; sourceTree = "<group>"; };
+		6C46E3992A3032DD003EBA6C /* ModifyComponentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyComponentsView.swift; sourceTree = "<group>"; };
 		6C688F0A2A2882BF000EC7D0 /* RecipeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeData.swift; sourceTree = "<group>"; };
+		6CB4E7982A340DC200503355 /* ModifyDirectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyDirectionView.swift; sourceTree = "<group>"; };
 		6CD029A72A2E160400689EDF /* RecipeCategoryGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCategoryGridView.swift; sourceTree = "<group>"; };
 		6CD5D52A2A2EDE7F0000439E /* ModifyRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyRecipeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -129,7 +131,8 @@
 				6CD5D52A2A2EDE7F0000439E /* ModifyRecipeView.swift */,
 				6C46E3952A301738003EBA6C /* ModifyMainInfoView.swift */,
 				6C46E3972A301FD7003EBA6C /* ModifyIngredientView.swift */,
-				6C46E3992A3032DD003EBA6C /* ModifyIngredientsView.swift */,
+				6CB4E7982A340DC200503355 /* ModifyDirectionView.swift */,
+				6C46E3992A3032DD003EBA6C /* ModifyComponentsView.swift */,
 			);
 			path = ModifyRecipes;
 			sourceTree = "<group>";
@@ -208,8 +211,9 @@
 				6C46E3962A301738003EBA6C /* ModifyMainInfoView.swift in Sources */,
 				6C46E3982A301FD7003EBA6C /* ModifyIngredientView.swift in Sources */,
 				6C1FBD182A28D02100EE3C5B /* RecipeDetailView.swift in Sources */,
+				6CB4E7992A340DC200503355 /* ModifyDirectionView.swift in Sources */,
 				6CD029A82A2E160400689EDF /* RecipeCategoryGridView.swift in Sources */,
-				6C46E39A2A3032DD003EBA6C /* ModifyIngredientsView.swift in Sources */,
+				6C46E39A2A3032DD003EBA6C /* ModifyComponentsView.swift in Sources */,
 				6C688F0B2A2882BF000EC7D0 /* RecipeData.swift in Sources */,
 				6CD5D52B2A2EDE7F0000439E /* ModifyRecipeView.swift in Sources */,
 				6C413F5E2A2835650055D2E7 /* RecipeListView.swift in Sources */,
