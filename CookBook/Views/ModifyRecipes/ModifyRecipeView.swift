@@ -33,7 +33,6 @@ struct ModifyRecipeView: View {
             
             Spacer()
         }
-        .navigationTitle("Add New Recipe")
     }
 }
 

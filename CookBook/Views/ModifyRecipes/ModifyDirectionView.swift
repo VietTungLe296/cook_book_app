@@ -20,8 +20,12 @@ struct ModifyDirectionView: ModifyComponentView {
     
     var body: some View {
         Form {
-            TextField("Direction Description",text: $direction.description)
-              
+            Section(header: Text("Description")) {
+                TextEditor(text: $direction.description)
+                .autocorrectionDisabled(true)
+                .frame(height: 100)
+            }
+            
             Toggle("Optional", isOn: $direction.isOptional)
             
             HStack {

@@ -18,7 +18,7 @@ struct RecipeListView: View {
                 List {
                     ForEach(recipes) { recipe in
                         NavigationLink {
-                            RecipeDetailView(recipe: recipe)
+                            RecipeDetailView(recipe: binding(for: recipe))
                         } label: {
                             Text(recipe.mainInformation.name)
                         }
@@ -69,6 +69,14 @@ extension RecipeListView {
     
     private var navigationTitle : String {
         "\(category.rawValue) Recipes"
+    }
+    
+    func binding(for recipe : Recipe) -> Binding<Recipe> {
+        guard let index = recipeData.index(of: recipe) else {
+            fatalError("Recipe Not Found")
+        }
+        
+        return $recipeData.recipes[index]
     }
 }
 

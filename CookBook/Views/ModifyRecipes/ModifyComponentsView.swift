@@ -39,7 +39,7 @@ struct ModifyComponentsView<Component: RecipeComponent, DestinationView: ModifyC
                 newComponent = Component()
             }
                 .navigationTitle("Add \(Component.singularName().capitalized)")
-
+            
             if components.isEmpty {
                 Spacer()
                 NavigationLink("Add the first \(Component.singularName())", destination: addComponentView)
@@ -50,14 +50,29 @@ struct ModifyComponentsView<Component: RecipeComponent, DestinationView: ModifyC
                         .font(.title)
                         .padding()
                     Spacer()
+                    EditButton()
+                        .padding()
                 }
                 
                 List {
                     ForEach(components.indices, id: \.self) {index in
-                        Text(components[index].description)
+                        let component = components[index]
+                        let editComponentView = DestinationView(component: $components[index]) { _ in
+                            return
+                        }
+                            .navigationTitle("Edit \(Component.singularName().capitalized)")
+                        NavigationLink(component.description,
+                                       destination: editComponentView)
                     }
+                    .onDelete { components.remove(atOffsets: $0) }
+                    .onMove { indices, newOffset in
+                        components.move(fromOffsets: indices, toOffset: newOffset)
+                    }
+                    .listRowBackground(AppColor.background)
+                    
                     NavigationLink("Add another \(Component.singularName())", destination: addComponentView)
-                    .buttonStyle(PlainButtonStyle())
+                        .buttonStyle(PlainButtonStyle())
+                        .padding(10)
                 }
             }
         }

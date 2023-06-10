@@ -26,4 +26,8 @@ class RecipeData : ObservableObject {
             recipes.append(recipe)
         }
     }
+    
+    func index(of recipe: Recipe) -> Int? {
+        return recipes.firstIndex {$0.id == recipe.id}
+    }
 }

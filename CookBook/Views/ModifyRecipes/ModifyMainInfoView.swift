@@ -11,28 +11,36 @@ struct ModifyMainInfoView: View {
     @Binding var mainInformation : MainInformation
     
     var body: some View {
-        Form {
-            TextField("Recipe Name", text: $mainInformation.name)
-            
-            TextField("Author", text: $mainInformation.author)
-            
-            Section(header: Text("Description")) {
-                TextEditor(text: $mainInformation.description)
-            }
-            
-            Picker(selection: $mainInformation.category,
-                   label: HStack {
-                        Text("Category")
-                        Spacer()
-            }) {
-                ForEach(Category.allCases, id: \.self) {category in
-                    Text(category.rawValue)
+            Form {
+                Section(header: Text("Recipe Name")) {
+                    TextField("Recipe Name", text: $mainInformation.name)
+                    .autocorrectionDisabled(true)
                 }
+                
+                Section(header: Text("Author Name")) {
+                    TextField("Author", text: $mainInformation.author)
+                    .autocorrectionDisabled(true)
+                }
+             
+                Section(header: Text("Description")) {
+                    TextEditor(text: $mainInformation.description)
+                        .frame(height: 100)
+                        .autocorrectionDisabled(true)
+                }
+                
+                Picker(selection: $mainInformation.category,
+                       label: HStack {
+                            Text("Category")
+                            Spacer()
+                }) {
+                    ForEach(Category.allCases, id: \.self) {category in
+                        Text(category.rawValue)
+                    }
+                }
+                .pickerStyle(MenuPickerStyle())
             }
-            .pickerStyle(MenuPickerStyle())
+            .foregroundColor(AppColor.foreground)
         }
-        .foregroundColor(AppColor.foreground)
-    }
 }
 
 
