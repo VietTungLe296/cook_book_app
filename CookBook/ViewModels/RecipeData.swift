@@ -10,6 +10,10 @@ import Foundation
 class RecipeData : ObservableObject {
     @Published var recipes = Recipe.testRecipes
     
+    var favoriteRecipes : [Recipe] {
+        recipes.filter {$0.isFavorite}
+    }
+    
     func recipes(for category: Category) -> [Recipe] {
         var filteredRecipes = [Recipe]()
         
@@ -25,5 +29,9 @@ class RecipeData : ObservableObject {
         if recipe.isValid {
             recipes.append(recipe)
         }
+    }
+    
+    func index(of recipe: Recipe) -> Int? {
+        return recipes.firstIndex {$0.id == recipe.id}
     }
 }

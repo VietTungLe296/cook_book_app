@@ -11,32 +11,36 @@ struct ModifyMainInfoView: View {
     @Binding var mainInformation : MainInformation
     
     var body: some View {
-        Form {
-            TextField("Recipe Name", text: $mainInformation.name)
-                .listRowBackground(AppColor.background)
-            
-            TextField("Author", text: $mainInformation.author)
-                .listRowBackground(AppColor.background)
-            
-            Section(header: Text("Description")) {
-                TextEditor(text: $mainInformation.description)
-                .listRowBackground(AppColor.background)
-            }
-            
-            Picker(selection: $mainInformation.category,
-                   label: HStack {
-                        Text("Category")
-                        Spacer()
-            }) {
-                ForEach(Category.allCases, id: \.self) {category in
-                    Text(category.rawValue)
+            Form {
+                Section(header: Text("Recipe Name")) {
+                    TextField("Recipe Name", text: $mainInformation.name)
+                    .autocorrectionDisabled(true)
                 }
+                
+                Section(header: Text("Author Name")) {
+                    TextField("Author", text: $mainInformation.author)
+                    .autocorrectionDisabled(true)
+                }
+             
+                Section(header: Text("Description")) {
+                    TextEditor(text: $mainInformation.description)
+                        .frame(height: 100)
+                        .autocorrectionDisabled(true)
+                }
+                
+                Picker(selection: $mainInformation.category,
+                       label: HStack {
+                            Text("Category")
+                            Spacer()
+                }) {
+                    ForEach(Category.allCases, id: \.self) {category in
+                        Text(category.rawValue)
+                    }
+                }
+                .pickerStyle(MenuPickerStyle())
             }
-            .listRowBackground(AppColor.background)
-            .pickerStyle(MenuPickerStyle())
+            .foregroundColor(AppColor.foreground)
         }
-        .foregroundColor(AppColor.foreground)
-    }
 }
 
 

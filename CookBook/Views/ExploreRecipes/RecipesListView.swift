@@ -1,5 +1,5 @@
 //
-//  RecipeListView.swift
+//  RecipesListView.swift
 //  CookBook
 //
 //  Created by Le Viet Tung on 01/06/2023.
@@ -7,18 +7,19 @@
 
 import SwiftUI
 
-struct RecipeListView: View {
+struct RecipesListView: View {
     @EnvironmentObject private var recipeData : RecipeData
-    let category : Category
     @State private var isPresenting = false
     @State private var newRecipe = Recipe()
+
+    let viewStyle : ViewStyle
     
     var body: some View {
          NavigationStack {
                 List {
                     ForEach(recipes) { recipe in
                         NavigationLink {
-                            RecipeDetailView(recipe: recipe)
+                            RecipeDetailView(recipe: binding(for: recipe))
                         } label: {
                             Text(recipe.mainInformation.name)
                         }
@@ -62,19 +63,43 @@ struct RecipeListView: View {
 }
 
 
-extension RecipeListView {
+extension RecipesListView {
     private var recipes : [Recipe] {
-        recipeData.recipes(for: category)
+        switch viewStyle {
+            case let .singleCategory(category):
+                return recipeData.recipes(for: category)
+            case .favorites:
+                return recipeData.favoriteRecipes
+        }
     }
-    
+        
     private var navigationTitle : String {
-        "\(category.rawValue) Recipes"
-    }
+        switch viewStyle {
+            case let .singleCategory(category):
+                return "\(category.rawValue) Recipes"
+            case .favorites:
+                return "Favorite Recipes"
+            }
+        }
+        
+        func binding(for recipe : Recipe) -> Binding<Recipe> {
+            guard let index = recipeData.index(of: recipe) else {
+                fatalError("Recipe Not Found")
+            }
+            
+            return $recipeData.recipes[index]
+        }
 }
 
-struct RecipeListView_Previews: PreviewProvider {
-    static var previews: some View {
-        RecipeListView(category: .breakfast)
-            .environmentObject(RecipeData())
-    }
+enum ViewStyle {
+    case favorites
+    case singleCategory(Category)
+}
+
+struct RecipesListView_Previews: PreviewProvider {
+  static var previews: some View {
+    NavigationStack {
+      RecipesListView(viewStyle: .singleCategory(.breakfast))
+    }.environmentObject(RecipeData())
+  }
 }
