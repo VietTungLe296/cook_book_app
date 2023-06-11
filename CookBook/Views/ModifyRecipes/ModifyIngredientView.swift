@@ -13,6 +13,9 @@ struct ModifyIngredientView: ModifyComponentView {
     
     @Environment(\.dismiss) var dismiss
     
+    @AppStorage("listBackgroundColor") private var listBackgroundColor = AppColor.background
+    @AppStorage("listTextColor") private var listTextColor = AppColor.foreground
+    
     init(component: Binding<Ingredient>, createAction: @escaping (Ingredient) -> Void) {
         self._ingredient = component
         self.createAction = createAction
@@ -22,7 +25,8 @@ struct ModifyIngredientView: ModifyComponentView {
             Form {
                 TextField("Ingredient Name",text: $ingredient.name)
                     .autocorrectionDisabled(true)
-                    
+                    .listRowBackground(listBackgroundColor)
+                    .foregroundColor(listTextColor)
                 HStack {
                     Text("Quantity:")
                     TextField("Quantity",
@@ -30,7 +34,9 @@ struct ModifyIngredientView: ModifyComponentView {
                             formatter: NumberFormatter.decimal)
                     .keyboardType(.numberPad)
                 }
-
+                .listRowBackground(listBackgroundColor)
+                .foregroundColor(listTextColor)
+                
                 Picker(selection : $ingredient.unit, label:
                         HStack {
                     Text("Unit")
@@ -41,6 +47,8 @@ struct ModifyIngredientView: ModifyComponentView {
                     }
                 }
                 .pickerStyle(MenuPickerStyle())
+                .listRowBackground(listBackgroundColor)
+                .foregroundColor(listTextColor)
                 
                 HStack {
                     Spacer()
@@ -50,8 +58,8 @@ struct ModifyIngredientView: ModifyComponentView {
                     }
                     Spacer()
                 }
-            }
-            .foregroundColor(AppColor.foreground)
+            }   
+
     }
 }
 

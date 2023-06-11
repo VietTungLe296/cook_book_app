@@ -30,6 +30,12 @@ struct Recipe : Identifiable {
     var isValid : Bool {
         mainInformation.isValid && !ingredients.isEmpty && !directions.isEmpty
     }
+    
+    func index(of direction : Direction, excludingOptionalDirections: Bool) -> Int? {
+        let directions = directions.filter {excludingOptionalDirections ? !$0.isOptional : true}
+        
+        return directions.firstIndex {$0.description == direction.description}
+    }
 }
 
 extension Recipe {

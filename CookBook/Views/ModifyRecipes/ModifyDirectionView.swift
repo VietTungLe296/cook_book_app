@@ -10,8 +10,10 @@ import SwiftUI
 struct ModifyDirectionView: ModifyComponentView {
     @Binding var direction : Direction
     let createAction : (Direction) -> Void
-    
     @Environment(\.dismiss) var dismiss
+    
+    @AppStorage("listBackgroundColor") private var listBackgroundColor = AppColor.background
+    @AppStorage("listTextColor") private var listTextColor = AppColor.foreground
     
     init(component: Binding<Direction>, createAction: @escaping (Direction) -> Void) {
         self._direction = component
@@ -25,8 +27,12 @@ struct ModifyDirectionView: ModifyComponentView {
                 .autocorrectionDisabled(true)
                 .frame(height: 100)
             }
+            .listRowBackground(listBackgroundColor)
+            .foregroundColor(listTextColor)
             
             Toggle("Optional", isOn: $direction.isOptional)
+                .listRowBackground(listBackgroundColor)
+                .foregroundColor(listTextColor)
             
             HStack {
                 Spacer()
@@ -37,7 +43,7 @@ struct ModifyDirectionView: ModifyComponentView {
                 Spacer()
             }
         }
-        .foregroundColor(AppColor.foreground)
+        
     }
 }
 

@@ -21,6 +21,7 @@
 		6CB4E7992A340DC200503355 /* ModifyDirectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB4E7982A340DC200503355 /* ModifyDirectionView.swift */; };
 		6CD029A82A2E160400689EDF /* RecipeCategoryGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD029A72A2E160400689EDF /* RecipeCategoryGridView.swift */; };
 		6CD5D52B2A2EDE7F0000439E /* ModifyRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD5D52A2A2EDE7F0000439E /* ModifyRecipeView.swift */; };
+		6CDEC55F2A35FA1200C57CD7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDEC55E2A35FA1200C57CD7 /* SettingsView.swift */; };
 		6CF173042A35748900F6D6C3 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF173032A35748900F6D6C3 /* MainTabView.swift */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +41,7 @@
 		6CB4E7982A340DC200503355 /* ModifyDirectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyDirectionView.swift; sourceTree = "<group>"; };
 		6CD029A72A2E160400689EDF /* RecipeCategoryGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCategoryGridView.swift; sourceTree = "<group>"; };
 		6CD5D52A2A2EDE7F0000439E /* ModifyRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyRecipeView.swift; sourceTree = "<group>"; };
+		6CDEC55E2A35FA1200C57CD7 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = SOURCE_ROOT; };
 		6CF173032A35748900F6D6C3 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainTabView.swift; path = ExploreRecipes/MainTabView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,6 +104,7 @@
 		6C688F072A288086000EC7D0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				6CDEC55E2A35FA1200C57CD7 /* SettingsView.swift */,
 				6CF173032A35748900F6D6C3 /* MainTabView.swift */,
 				6CD5D5282A2EDE290000439E /* ExploreRecipes */,
 				6CD5D5292A2EDE3D0000439E /* ModifyRecipes */,
@@ -217,6 +220,7 @@
 				6CB4E7992A340DC200503355 /* ModifyDirectionView.swift in Sources */,
 				6CD029A82A2E160400689EDF /* RecipeCategoryGridView.swift in Sources */,
 				6C46E39A2A3032DD003EBA6C /* ModifyComponentsView.swift in Sources */,
+				6CDEC55F2A35FA1200C57CD7 /* SettingsView.swift in Sources */,
 				6CF173042A35748900F6D6C3 /* MainTabView.swift in Sources */,
 				6C688F0B2A2882BF000EC7D0 /* RecipeData.swift in Sources */,
 				6CD5D52B2A2EDE7F0000439E /* ModifyRecipeView.swift in Sources */,

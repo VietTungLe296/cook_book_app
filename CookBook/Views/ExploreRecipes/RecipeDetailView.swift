@@ -11,6 +11,10 @@ struct RecipeDetailView: View {
     @Binding var recipe : Recipe
     @State private var isPresenting = false
     
+    @AppStorage("hideOptionalSteps") private var hideOptionalSteps : Bool = false
+    @AppStorage("listBackgroundColor") private var listBackgroundColor = AppColor.background
+    @AppStorage("listTextColor") private var listTextColor = AppColor.foreground
+    
     var body: some View {
         VStack {
             HStack {
@@ -33,20 +37,26 @@ struct RecipeDetailView: View {
                         let ingredient = recipe.ingredients[index]
                         Text(ingredient.description)
                     }
-                }.listRowBackground(AppColor.background)
+                }.listRowBackground(listBackgroundColor)
                 Section(header: Text("Todo List")
                                 .font(.system(size: 20))
                                 .foregroundColor(.blue)) {
-                        ForEach(recipe.directions.indices, id: \.self) {index in
-                            let direction = recipe.directions[index]
-                            let description = (direction.isOptional ? ("(Optional) ") : "") + direction.description
-                            HStack {
-                                Text("\(index+1). ").bold()
-                                Text("\(description)")
-                            }
-                        }
-                    }.listRowBackground(AppColor.background)
-            }.listStyle(PlainListStyle())
+                                    ForEach(recipe.directions.indices, id: \.self) {index in
+                                        let direction = recipe.directions[index]
+                                        if direction.isOptional && hideOptionalSteps {
+                                            EmptyView()
+                                        } else {
+                                            HStack {
+                                                let index = recipe.index(of: direction, excludingOptionalDirections: hideOptionalSteps) ?? 0
+                                                Text("\(index + 1). ").bold()
+                                                Text("\(direction.isOptional ? "(Optional) " : "")\(direction.description)")
+                                            }
+                                        }
+                                    }
+                    }.listRowBackground(listBackgroundColor)
+            }
+            .listStyle(PlainListStyle())
+            .foregroundColor(listTextColor)
         }
         .navigationTitle(recipe.mainInformation.name)
         .toolbar {
