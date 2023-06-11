@@ -48,13 +48,18 @@ struct RecipeDetailView: View {
                     }.listRowBackground(AppColor.background)
             }.listStyle(PlainListStyle())
         }
-        .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(recipe.mainInformation.name)
         .toolbar {
             ToolbarItem {
                 HStack {
                     Button("Edit") {
                         isPresenting = true
+                    }
+                    
+                    Button(action : {
+                        recipe.isFavorite.toggle()
+                    }) {
+                        Image(systemName: recipe.isFavorite ? "heart.fill" : "heart")
                     }
                 }
             }
