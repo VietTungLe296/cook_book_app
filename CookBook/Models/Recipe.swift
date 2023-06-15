@@ -7,8 +7,9 @@
 
 import Foundation
 
-struct Recipe : Identifiable {
+struct Recipe : Identifiable, Codable {
     var id = UUID()
+    
     var mainInformation : MainInformation
     var ingredients : [Ingredient]
     var directions : [Direction]
@@ -39,7 +40,7 @@ struct Recipe : Identifiable {
 }
 
 extension Recipe {
-  static let testRecipes: [Recipe] = [
+  static var testRecipes: [Recipe] = [
     Recipe(mainInformation: MainInformation(name: "Dad's Mashed Potatoes",
                                             description: "Buttery salty mashed potatoes!",
                                             author: "Josh",
@@ -366,7 +367,7 @@ extension Recipe {
   ]
 }
 
-struct MainInformation {
+struct MainInformation : Codable {
     var name : String
     var description : String
     var author : String
@@ -377,7 +378,7 @@ struct MainInformation {
     }
 }
 
-struct Ingredient : RecipeComponent {
+struct Ingredient : RecipeComponent, Codable {
     var name : String
     var quantity : Double
     var unit : Unit
@@ -418,14 +419,14 @@ struct Direction : RecipeComponent {
       }
 }
 
-enum Category : String, CaseIterable {
+enum Category : String, CaseIterable, Codable {
     case breakfast = "Breakfast"
     case lunch = "Lunch"
     case dinner = "Dinner"
     case dessert = "Dessert"
 }
 
-enum Unit : String, CaseIterable {
+enum Unit : String, CaseIterable, Codable {
     case oz = "Ounces"
     case g = "Grams"
     case cups = "Cups"
