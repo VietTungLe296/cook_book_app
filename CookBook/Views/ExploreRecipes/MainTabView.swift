@@ -23,8 +23,16 @@ struct MainTabView: View {
             .tabItem {
                 Label("Favorites",systemImage: "heart.fill")
             }
+            
+            SettingsView()
+            .tabItem {
+                    Label("Setting", systemImage: "gear")
+                }
         }
         .environmentObject(recipeData)
+        .onAppear {
+          recipeData.loadRecipes()
+        }
     }
 }
 

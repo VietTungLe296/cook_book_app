@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-protocol RecipeComponent :CustomStringConvertible {
+protocol RecipeComponent :CustomStringConvertible, Codable {
     init()
     static func singularName() -> String
     static func pluralName() -> String
@@ -31,6 +31,9 @@ protocol ModifyComponentView : View {
 struct ModifyComponentsView<Component: RecipeComponent, DestinationView: ModifyComponentView>: View where DestinationView.Component == Component {
     @Binding var components: [Component]
     @State private var newComponent = Component()
+    
+    @AppStorage("listBackgroundColor") private var listBackgroundColor = AppColor.background
+    @AppStorage("listTextColor") private var listTextColor = AppColor.foreground
     
     var body: some View {
         VStack {
@@ -68,7 +71,8 @@ struct ModifyComponentsView<Component: RecipeComponent, DestinationView: ModifyC
                     .onMove { indices, newOffset in
                         components.move(fromOffsets: indices, toOffset: newOffset)
                     }
-                    .listRowBackground(AppColor.background)
+                    .listRowBackground(listBackgroundColor)
+                    .foregroundColor(listTextColor)
                     
                     NavigationLink("Add another \(Component.singularName())", destination: addComponentView)
                         .buttonStyle(PlainButtonStyle())

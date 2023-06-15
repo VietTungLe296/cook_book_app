@@ -30,7 +30,6 @@ struct ModifyRecipeView: View {
             case .directions:
                 ModifyComponentsView<Direction, ModifyDirectionView>(components: $recipe.directions)
             }
-            
             Spacer()
         }
     }

@@ -28,10 +28,46 @@ class RecipeData : ObservableObject {
     func add(recipe:  Recipe) {
         if recipe.isValid {
             recipes.append(recipe)
+            saveRecipes()
         }
     }
     
     func index(of recipe: Recipe) -> Int? {
         return recipes.firstIndex {$0.id == recipe.id}
+    }
+    
+    // Persistence
+    private var recipesFileURL: URL {
+        do {
+            let documentDirectory = try FileManager.default.url(for: .documentDirectory,
+                                                                in: .userDomainMask,
+                                                                appropriateFor: nil,
+                                                                create: true)
+            return documentDirectory.appendingPathComponent("recipeData")
+        }
+        catch {
+            fatalError("An error occurred while getting the url: \(error)")
+        }
+    }
+    
+    func saveRecipes() {
+        do {
+            let encodedData = try JSONEncoder().encode(recipes)
+            try encodedData.write(to: recipesFileURL)
+        }
+        catch {
+            fatalError("An error occurred while saving recipes: \(error)")
+        }
+    }
+    
+    func loadRecipes() {
+        guard let data = try? Data(contentsOf: recipesFileURL) else {return}
+        
+        do {
+            recipes = try JSONDecoder().decode([Recipe].self, from: data)
+        }
+        catch {
+            fatalError("An error occurred while loading recipes: \(error)")
+        }
     }
 }

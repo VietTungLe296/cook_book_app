@@ -11,8 +11,11 @@ struct RecipesListView: View {
     @EnvironmentObject private var recipeData : RecipeData
     @State private var isPresenting = false
     @State private var newRecipe = Recipe()
-
     let viewStyle : ViewStyle
+    
+    @AppStorage("listBackgroundColor") private var listBackgroundColor = AppColor.background
+    @AppStorage("listTextColor") private var listTextColor = AppColor.foreground
+    
     
     var body: some View {
          NavigationStack {
@@ -23,8 +26,9 @@ struct RecipesListView: View {
                         } label: {
                             Text(recipe.mainInformation.name)
                         }
-                    }.listRowBackground(AppColor.background)
+                    }.listRowBackground(listBackgroundColor)
                 }
+                .foregroundColor(listTextColor)
                 .listStyle(PlainListStyle())
                 .navigationTitle(navigationTitle)
                 .toolbar {

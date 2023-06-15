@@ -10,23 +10,29 @@ import SwiftUI
 struct ModifyMainInfoView: View {
     @Binding var mainInformation : MainInformation
     
+    @AppStorage("listBackgroundColor") private var listBackgroundColor = AppColor.background
+    @AppStorage("listTextColor") private var listTextColor = AppColor.foreground
+    
     var body: some View {
             Form {
                 Section(header: Text("Recipe Name")) {
                     TextField("Recipe Name", text: $mainInformation.name)
                     .autocorrectionDisabled(true)
                 }
+                .listRowBackground(listBackgroundColor)
                 
                 Section(header: Text("Author Name")) {
                     TextField("Author", text: $mainInformation.author)
                     .autocorrectionDisabled(true)
                 }
+                .listRowBackground(listBackgroundColor)
              
                 Section(header: Text("Description")) {
                     TextEditor(text: $mainInformation.description)
                         .frame(height: 100)
                         .autocorrectionDisabled(true)
                 }
+                .listRowBackground(listBackgroundColor)
                 
                 Picker(selection: $mainInformation.category,
                        label: HStack {
@@ -38,8 +44,9 @@ struct ModifyMainInfoView: View {
                     }
                 }
                 .pickerStyle(MenuPickerStyle())
+                .listRowBackground(listBackgroundColor)
             }
-            .foregroundColor(AppColor.foreground)
+            .foregroundColor(listTextColor)
         }
 }
 
